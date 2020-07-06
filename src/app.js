@@ -1,3 +1,3 @@
-import * as THREE from 'three';
+import Engine from './core/Engine';
 
-console.log(THREE);
+new Engine();
