@@ -2,6 +2,7 @@ export default class Loop {
     constructor(callback) {
         this.callback = callback;
         this.frame = null;
+        this.time = Date.now();
         this.update = this.update.bind(this);
     }
 
@@ -15,6 +16,7 @@ export default class Loop {
         }
 
         this.frame = window.requestAnimationFrame(this.update);
+        this.time = Date.now();
     }
 
     stop() {
@@ -30,6 +32,10 @@ export default class Loop {
     update() {
         this.frame = window.requestAnimationFrame(this.update);
 
-        this.callback();
+        const { time } = this;
+
+        this.time = Date.now();
+
+        this.callback(this.time - time);
     }
 }
