@@ -8,6 +8,7 @@ import {
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Cube from './Cube';
 import Ground from './Ground';
+import Segment from './Segment';
 import Loop from './Loop';
 
 export default class Engine {
@@ -22,6 +23,12 @@ export default class Engine {
         this.lights = [
             new DirectionalLight(0xffffff, 0.5),
             new AmbientLight( 0x999999 ),
+        ];
+
+        this.lines = [
+            new Segment([-5,0,0], [5,0,0], 'red', this.scene),
+            new Segment([0,-5,0], [0,5,0], 'green', this.scene),
+            new Segment([0,0,-5], [0,0,5], 'blue', this.scene),
         ];
 
         this.update = this.update.bind(this);

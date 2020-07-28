@@ -23,4 +23,19 @@ export default class EasedValue {
 
         return this.value;
     }
+
+    updateDiff(time) {
+        if (this.target === this.value) {
+            return 0;
+        }
+
+        const forward = this.target > this.value;
+        const direction = forward ? 1 : -1;
+        const cap = forward ? Math.min : Math.max;
+        const { value } = this;
+
+        this.value = cap(this.value + direction * time / 1000 * this.speed, this.target);
+
+        return this.value - value;
+    }
 }
